@@ -1,7 +1,12 @@
 import type { KnowledgeGraph, Entity, RelationType } from './neo4jService';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Configuration
-const GEMINI_API_KEY = 'AIzaSyCBNCn-QvKJM3zvZ60YcufHci91FvtCzsw';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
+
 
 interface GeminiEntity {
     type: string;

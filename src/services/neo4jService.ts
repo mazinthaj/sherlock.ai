@@ -1,10 +1,13 @@
 import neo4j, { Driver, Session } from 'neo4j-driver';
+import dotenv from 'dotenv';
 
-// Using the Neo4j credentials from the notebook
-// Using neo4j+s for proper certificate verification
-const NEO4J_URI = "neo4j+s://2c1a2b01.databases.neo4j.io";
-const NEO4J_USERNAME = "neo4j";
-const NEO4J_PASSWORD = "epnbfOrO05Sg80PQ04Ty0RY-8D1-Tan4O5-v8A0GKsE";
+// Load environment variables
+dotenv.config();
+
+// Using the Neo4j credentials from the .env file
+const NEO4J_URI = process.env.NEO4J_URI || "";
+const NEO4J_USERNAME = process.env.NEO4J_USERNAME || "";
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || "";
 
 // Types for our knowledge graph data
 export type EntityType = string;

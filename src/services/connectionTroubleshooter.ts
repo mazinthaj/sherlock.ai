@@ -1,11 +1,15 @@
 import neo4j from 'neo4j-driver';
+import dotenv from 'dotenv';
 
-// Neo4j credentials from the notebook
-const NEO4J_URI = "neo4j+s://2c1a2b01.databases.neo4j.io";
-const NEO4J_URI_SSC = "neo4j+ssc://2c1a2b01.databases.neo4j.io";
-const NEO4J_URI_UNENCRYPTED = "neo4j://2c1a2b01.databases.neo4j.io";
-const NEO4J_USERNAME = "neo4j";
-const NEO4J_PASSWORD = "epnbfOrO05Sg80PQ04Ty0RY-8D1-Tan4O5-v8A0GKsE";
+// Load environment variables from .env file
+dotenv.config();
+
+// Neo4j credentials from .env
+const NEO4J_URI = process.env.NEO4J_URI || "";
+const NEO4J_URI_SSC = process.env.NEO4J_URI_SSC || "";
+const NEO4J_URI_UNENCRYPTED = process.env.NEO4J_URI_UNENCRYPTED || "";
+const NEO4J_USERNAME = process.env.NEO4J_USERNAME || "";
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || "";
 
 
 export async function troubleshootConnection() {

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { neo4jService } from './src/services/neo4jService.js';
+import { neo4jService } from './src/services/neo4jService.ts';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
