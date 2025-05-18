@@ -63,17 +63,7 @@ cd sherlock.ai
 npm install
 ```
 
-3. Configure Neo4j connection:
-   - Update the Neo4j connection details in `src/services/neo4jService.ts`
-
-4. Start the development servers:
-```bash
-npm run dev
-```
-
-This will start both the Vite development server and the API server concurrently.
-
-### Environment Configuration
+3. Environment Configuration
 The application uses environment variables for configuration. Create a .env file with the following variables:
 ```bash
 # Neo4j Credentials
@@ -86,6 +76,13 @@ NEO4J_PASSWORD=your_password
 # Gemini API
 GEMINI_API_KEY=your_gemini_api_key
 ```
+
+4. Start the development servers:
+```bash
+npm run dev
+```
+
+This will start both the Vite development server and the API server concurrently.
 
 ## Usage
 
