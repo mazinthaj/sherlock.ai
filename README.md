@@ -73,7 +73,7 @@ npm run dev
 
 This will start both the Vite development server and the API server concurrently.
 
-###Environment Configuration
+### Environment Configuration
 The application uses environment variables for configuration. Create a .env file with the following variables:
 ```bash
 # Neo4j Credentials
