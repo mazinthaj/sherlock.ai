@@ -73,6 +73,20 @@ npm run dev
 
 This will start both the Vite development server and the API server concurrently.
 
+###Environment Configuration
+The application uses environment variables for configuration. Create a .env file with the following variables:
+```bash
+# Neo4j Credentials
+NEO4J_URI=neo4j+s://your-database-id.databases.neo4j.io
+NEO4J_URI_SSC=neo4j+ssc://your-database-id.databases.neo4j.io
+NEO4J_URI_UNENCRYPTED=neo4j://your-database-id.databases.neo4j.io
+NEO4J_USERNAME=your_username
+NEO4J_PASSWORD=your_password
+
+# Gemini API
+GEMINI_API_KEY=your_gemini_api_key
+```
+
 ## Usage
 
 1. Navigate to `http://localhost:5173` (or the port shown in your terminal)
@@ -85,7 +99,11 @@ This will start both the Vite development server and the API server concurrently
 ## Screenshots
 
 ![image](https://github.com/user-attachments/assets/3aedda6a-d595-4754-806c-c30393908e4e)
+
+
 ![image](https://github.com/user-attachments/assets/8ccdc1c7-af3f-4766-982b-d745d4e4324b)
+
+
 ![image](https://github.com/user-attachments/assets/98cfa593-b236-4137-bb39-5a25116b07e8)
 
 
