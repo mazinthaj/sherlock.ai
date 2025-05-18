@@ -2,9 +2,6 @@ import type { KnowledgeGraph, Entity, RelationType } from './neo4jService';
 
 // Configuration
 const GEMINI_API_KEY = 'AIzaSyCBNCn-QvKJM3zvZ60YcufHci91FvtCzsw';
-const NEO4J_URI = 'neo4j+ssc://2c1a2b01.databases.neo4j.io';
-const NEO4J_USERNAME = 'neo4j';
-const NEO4J_PASSWORD = 'epnbfOrO05Sg80PQ04Ty0RY-8D1-Tan4O5-v8A0GKsE';
 
 interface GeminiEntity {
     type: string;

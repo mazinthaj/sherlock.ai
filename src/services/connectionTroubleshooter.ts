@@ -7,9 +7,6 @@ const NEO4J_URI_UNENCRYPTED = "neo4j://2c1a2b01.databases.neo4j.io";
 const NEO4J_USERNAME = "neo4j";
 const NEO4J_PASSWORD = "epnbfOrO05Sg80PQ04Ty0RY-8D1-Tan4O5-v8A0GKsE";
 
-// Alternative credentials - for testing
-const ALT_USERNAME = "neo4j";
-const ALT_PASSWORD = "epnbfOrO05Sg80PQ04Ty0RY-8D1-Tan4O5-v8A0GKsE";
 
 export async function troubleshootConnection() {
     console.log("🔍 Starting Neo4j connection troubleshooting...");
