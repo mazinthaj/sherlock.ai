@@ -1,13 +1,20 @@
 import neo4j, { Driver, Session } from 'neo4j-driver';
-import dotenv from 'dotenv';
 
-// Load environment variables
-dotenv.config();
+// Using the Neo4j credentials from Vite environment variables
+const NEO4J_URI = import.meta.env.VITE_NEO4J_URI;
+const NEO4J_USERNAME = import.meta.env.VITE_NEO4J_USERNAME;
+const NEO4J_PASSWORD = import.meta.env.VITE_NEO4J_PASSWORD;
 
-// Using the Neo4j credentials from the .env file
-const NEO4J_URI = process.env.NEO4J_URI || "";
-const NEO4J_USERNAME = process.env.NEO4J_USERNAME || "";
-const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || "";
+// Debug environment variables
+console.log('Environment Variables:', {
+    NEO4J_URI: NEO4J_URI ? 'Set' : 'Not Set',
+    NEO4J_USERNAME: NEO4J_USERNAME ? 'Set' : 'Not Set',
+    NEO4J_PASSWORD: NEO4J_PASSWORD ? 'Set' : 'Not Set'
+});
+
+if (!NEO4J_URI || !NEO4J_USERNAME || !NEO4J_PASSWORD) {
+    console.error('Missing required Neo4j environment variables. Please check your .env file.');
+}
 
 // Types for our knowledge graph data
 export type EntityType = string;
@@ -37,11 +44,25 @@ class Neo4jService {
     private isInitialized = false;
 
     constructor() {
+        if (!NEO4J_URI || !NEO4J_USERNAME || !NEO4J_PASSWORD) {
+            console.error('Cannot initialize Neo4j driver: Missing environment variables');
+            return;
+        }
         this.initializeDriver();
     }
 
     private initializeDriver() {
         try {
+            if (!NEO4J_URI) {
+                throw new Error('NEO4J_URI is not defined');
+            }
+            if (!NEO4J_USERNAME) {
+                throw new Error('NEO4J_USERNAME is not defined');
+            }
+            if (!NEO4J_PASSWORD) {
+                throw new Error('NEO4J_PASSWORD is not defined');
+            }
+
             console.log("Initializing Neo4j driver with URI:", NEO4J_URI);
             this.driver = neo4j.driver(
                 NEO4J_URI,

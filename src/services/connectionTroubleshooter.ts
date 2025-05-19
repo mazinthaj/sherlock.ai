@@ -1,16 +1,11 @@
 import neo4j from 'neo4j-driver';
-import dotenv from 'dotenv';
 
-// Load environment variables from .env file
-dotenv.config();
-
-// Neo4j credentials from .env
-const NEO4J_URI = process.env.NEO4J_URI || "";
-const NEO4J_URI_SSC = process.env.NEO4J_URI_SSC || "";
-const NEO4J_URI_UNENCRYPTED = process.env.NEO4J_URI_UNENCRYPTED || "";
-const NEO4J_USERNAME = process.env.NEO4J_USERNAME || "";
-const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || "";
-
+// Neo4j credentials from Vite environment variables
+const NEO4J_URI = import.meta.env.VITE_NEO4J_URI;
+const NEO4J_URI_SSC = import.meta.env.VITE_NEO4J_URI_SSC;
+const NEO4J_URI_UNENCRYPTED = import.meta.env.VITE_NEO4J_URI_UNENCRYPTED;
+const NEO4J_USERNAME = import.meta.env.VITE_NEO4J_USERNAME;
+const NEO4J_PASSWORD = import.meta.env.VITE_NEO4J_PASSWORD;
 
 export async function troubleshootConnection() {
     console.log("🔍 Starting Neo4j connection troubleshooting...");
