@@ -332,10 +332,7 @@ export const KnowledgeGraphViewer = ({ useMockData = false }: KnowledgeGraphView
                     highlight: '#ffffff',
                     opacity: 0.8
                 },
-                smooth: {
-                    type: 'curvedCW',
-                    roundness: 0.2
-                },
+                smooth: true,
                 width: 2
             }))
         );
@@ -350,69 +347,116 @@ export const KnowledgeGraphViewer = ({ useMockData = false }: KnowledgeGraphView
             layout: {
                 randomSeed: 42,
                 improvedLayout: true,
-                hierarchical: false
+                hierarchical: false,
+                nodeSpacing: 300, // Increased from 200 to 300
+                clusterThreshold: 200 // Increased from 150 to 200
             },
             nodes: {
-                shape: 'ellipse', // Default shape
+                shape: 'ellipse',
                 shadow: {
-                    enabled: false
+                    enabled: true,
+                    color: 'rgba(0,0,0,0.2)',
+                    size: 10,
+                    x: 5,
+                    y: 5
                 },
                 fixed: {
                     x: false,
                     y: false
                 },
                 margin: {
-                    top: 8,
-                    bottom: 8,
-                    left: 8,
-                    right: 8
+                    top: 12,
+                    bottom: 12,
+                    left: 12,
+                    right: 12
                 },
                 scaling: {
-                    min: 16,
-                    max: 40
+                    min: 20,
+                    max: 50,
+                    label: {
+                        enabled: true,
+                        min: 14,
+                        max: 18,
+                        maxVisible: 18,
+                        drawThreshold: 5
+                    }
                 },
                 widthConstraint: {
-                    minimum: 60
+                    minimum: 80,
+                    maximum: 120
                 },
                 font: {
                     face: 'Inter',
                     size: 14,
                     color: '#ffffff',
-                    strokeWidth: 0,
+                    strokeWidth: 2,
+                    strokeColor: '#000000',
                     align: 'center'
                 },
                 shapeProperties: {
-                    borderRadius: 6,     // Rounded corners for boxes
-                    interpolation: true,  // Smoother edges
+                    borderRadius: 6,
+                    interpolation: true,
                     useImageSize: false,
                     useBorderWithImage: true
                 }
             },
             edges: {
                 font: {
-                    strokeWidth: 0
-                }
+                    size: 14,
+                    strokeWidth: 2,
+                    strokeColor: '#000000',
+                    align: 'middle'
+                },
+                width: 2,
+                color: {
+                    color: '#999999',
+                    highlight: '#ffffff',
+                    opacity: 0.9
+                },
+                smooth: true,
+                arrows: {
+                    to: {
+                        enabled: true,
+                        scaleFactor: 1.5,
+                        type: 'arrow'
+                    }
+                },
+                selectionWidth: 4,
+                hoverWidth: 4
             },
             physics: {
                 enabled: true,
                 barnesHut: {
-                    gravitationalConstant: -500,
-                    centralGravity: 0.05,
-                    springLength: 150,
-                    springConstant: 0.01,
-                    damping: 0.2,
+                    gravitationalConstant: -3000, // Increased repulsion
+                    centralGravity: 0.05, // Reduced central gravity
+                    springLength: 300, // Increased from 200 to 300
+                    springConstant: 0.02, // Reduced spring constant
+                    damping: 0.3,
                     avoidOverlap: 1
                 },
-                stabilization: { enabled: true, iterations: 200, updateInterval: 10, fit: true, onlyDynamicEdges: false },
-                timestep: 0.3,
-                adaptiveTimestep: true
+                stabilization: {
+                    enabled: true,
+                    iterations: 1000,
+                    updateInterval: 25,
+                    fit: true,
+                    onlyDynamicEdges: false
+                },
+                timestep: 0.5,
+                adaptiveTimestep: true,
+                maxVelocity: 50,
+                minVelocity: 0.1
             },
             interaction: {
                 hover: true,
                 tooltipDelay: 300,
                 zoomView: true,
                 dragView: true,
-                dragNodes: true
+                dragNodes: true,
+                navigationButtons: true,
+                keyboard: {
+                    enabled: true,
+                    speed: { x: 10, y: 10, zoom: 0.1 }
+                }
             }
         };
 
@@ -432,25 +476,60 @@ export const KnowledgeGraphViewer = ({ useMockData = false }: KnowledgeGraphView
             }
         });
 
-        // Stabilize the network once, then disable physics immediately to prevent rotation
+        // Stabilize the network with improved physics
         networkRef.current.once('stabilized', function () {
-            console.log('Network stabilized, disabling physics');
-            // Immediately disable physics to prevent any rotation
+            console.log('Network stabilized, adjusting physics');
             if (networkRef.current) {
-                networkRef.current.setOptions({ physics: false });
+                // Gradually reduce physics instead of disabling immediately
+                networkRef.current.setOptions({
+                    physics: {
+                        enabled: true,
+                        barnesHut: {
+                            gravitationalConstant: -1500,
+                            centralGravity: 0.03,
+                            springLength: 250,
+                            springConstant: 0.01,
+                            damping: 0.5
+                        }
+                    }
+                });
+
                 // Fit the view to show all nodes
-                networkRef.current.fit();
+                networkRef.current.fit({
+                    animation: {
+                        duration: 1000,
+                        easingFunction: 'easeInOutQuad'
+                    }
+                });
             }
         });
 
-        // Disable physics after a short timeout even if stabilization hasn't completed
-        // This ensures the graph stops moving entirely
+        // Gradually disable physics after stabilization
         setTimeout(() => {
             if (networkRef.current) {
-                console.log('Forcing physics off to prevent rotation');
-                networkRef.current.setOptions({ physics: false });
+                console.log('Gradually reducing physics');
+                networkRef.current.setOptions({
+                    physics: {
+                        enabled: true,
+                        barnesHut: {
+                            gravitationalConstant: -800,
+                            centralGravity: 0.02,
+                            springLength: 200,
+                            springConstant: 0.008,
+                            damping: 0.8
+                        }
+                    }
+                });
             }
         }, 2000);
+
+        // Finally disable physics after a longer delay
+        setTimeout(() => {
+            if (networkRef.current) {
+                console.log('Disabling physics completely');
+                networkRef.current.setOptions({ physics: false });
+            }
+        }, 4000);
 
     }, [graphData, showOnlyConnected]);
 
