@@ -67,14 +67,14 @@ npm install
 The application uses environment variables for configuration. Create a .env file with the following variables:
 ```bash
 # Neo4j Credentials
-NEO4J_URI=neo4j+s://your-database-id.databases.neo4j.io
-NEO4J_URI_SSC=neo4j+ssc://your-database-id.databases.neo4j.io
-NEO4J_URI_UNENCRYPTED=neo4j://your-database-id.databases.neo4j.io
-NEO4J_USERNAME=your_username
-NEO4J_PASSWORD=your_password
+VITE_NEO4J_URI=neo4j+s://your-database-id.databases.neo4j.io
+VITE_NEO4J_URI_SSC=neo4j+ssc://your-database-id.databases.neo4j.io
+VITE_NEO4J_URI_UNENCRYPTED=neo4j://your-database-id.databases.neo4j.io
+VITE_NEO4J_USERNAME=your_username
+VITE_NEO4J_PASSWORD=your_password
 
 # Gemini API
-GEMINI_API_KEY=your_gemini_api_key
+VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
 
 4. Start the development servers:
