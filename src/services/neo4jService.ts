@@ -1,9 +1,13 @@
 import neo4j, { Driver, Session } from 'neo4j-driver';
+import dotenv from 'dotenv';
 
-// Using the Neo4j credentials from Vite environment variables
-const NEO4J_URI = import.meta.env.VITE_NEO4J_URI;
-const NEO4J_USERNAME = import.meta.env.VITE_NEO4J_USERNAME;
-const NEO4J_PASSWORD = import.meta.env.VITE_NEO4J_PASSWORD;
+// Load environment variables
+dotenv.config();
+
+// Using the Neo4j credentials from environment variables
+const NEO4J_URI = process.env.VITE_NEO4J_URI;
+const NEO4J_USERNAME = process.env.VITE_NEO4J_USERNAME;
+const NEO4J_PASSWORD = process.env.VITE_NEO4J_PASSWORD;
 
 // Debug environment variables
 console.log('Environment Variables:', {

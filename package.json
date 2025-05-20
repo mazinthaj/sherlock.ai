@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:vite": "vite",
-    "dev:api": "ts-node server.ts",
+    "dev:api": "tsx server.ts",
     "dev": "concurrently \"npm run dev:vite\" \"npm run dev:api\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -36,6 +36,10 @@
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@tailwindcss/postcss": "^4.1.7",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.18",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.2",
     "@types/node": "^22.15.18",
     "@types/react": "^19.1.4",
     "@types/react-anchor-link-smooth-scroll": "^1.0.5",
@@ -50,6 +54,7 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
