@@ -11,7 +11,7 @@ A powerful knowledge graph visualization tool developed during the Al Jazeera Ha
 - Visual connection status indicators
 
 ### Knowledge Graph Visualization
-- Interactive, force-directed graph layout using vis-network
+- Interactive, force-directed graph layout using vis.js
 - Color-coded nodes representing different entity types (Characters, Locations, Organizations, etc.)
 - Directional arrows showing relationships between entities
 - Node filtering options to focus on connected entities
@@ -35,7 +35,7 @@ A powerful knowledge graph visualization tool developed during the Al Jazeera Ha
 - **Frontend**:
   - React 19
   - Material UI 7
-  - vis-network for graph visualization
+  - vis.js for graph visualization
   - TypeScript for type safety
 
 - **Backend**:
