@@ -40,6 +40,8 @@ A powerful knowledge graph visualization tool developed during the Al Jazeera Ha
 
 - **Backend**:
   - Express server
+  - Gemini API key
+  - SerpApi to retrieve news
   - Neo4j database
   - Cypher query language for graph searches
 
